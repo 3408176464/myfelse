@@ -17,18 +17,26 @@ set MIMO_API_KEY=你的Key
 export MIMO_API_KEY="你的Key"
 ```
 
-### 2. 运行
+### 2. 识别图片
+
+**方式一：拖拽图片（最简单）**
+
+把图片文件直接拖到 `mimo.bat` 上，松手就能识别。
+
+**方式二：命令行**
 
 ```bash
-# 识别网络图片
-node mimo-image-understanding.js https://example.com/photo.jpg
-
 # 识别本地图片
-node mimo-image-understanding.js ./photo.png
+mimo.bat ./photo.png
+
+# 识别网络图片
+mimo.bat https://example.com/photo.jpg
 
 # 自定义提问
-node mimo-image-understanding.js ./photo.png "这张图片里有什么动物？"
+mimo.bat ./photo.png "这张图片里有什么动物？"
 ```
+
+Mac / Linux 用户用 `./mimo` 代替 `mimo.bat`。
 
 ## 配置（可选）
 
