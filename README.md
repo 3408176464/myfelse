@@ -1,71 +1,48 @@
 # MiMo Image Understanding
 
-Node.js script for [Xiaomi MiMo](https://platform.xiaomimimo.com) image understanding API. Zero dependencies — uses native `fetch`.
+用 [Xiaomi MiMo](https://platform.xiaomimimo.com) 大模型做图片识别，零依赖，一个脚本就能跑。
 
-Supports image URL and local file (auto Base64) input via the Anthropic-compatible API.
+## 使用
 
-## Quick Start
-
-### 1. Get API Key
-
-Go to [MiMo Console](https://platform.xiaomimimo.com/#/console/api-keys) and create an API Key.
-
-- **Token Plan** (`tp-` prefix): Use base URL `https://token-plan-cn.xiaomimimo.com/anthropic`
-- **Pay-as-you-go** (`sk-` prefix): Use base URL `https://api.xiaomimimo.com/anthropic`
-
-### 2. Set Environment Variable
+### 1. 设置 API Key
 
 ```bash
+# PowerShell
+$env:MIMO_API_KEY="你的Key"
+
+# CMD
+set MIMO_API_KEY=你的Key
+
 # Linux / macOS
-export MIMO_API_KEY="your-api-key-here"
-
-# Windows PowerShell
-$env:MIMO_API_KEY="your-api-key-here"
-
-# Windows CMD
-set MIMO_API_KEY=your-api-key-here
+export MIMO_API_KEY="你的Key"
 ```
 
-### 3. Run
+### 2. 运行
 
 ```bash
-# Image URL
+# 识别网络图片
 node mimo-image-understanding.js https://example.com/photo.jpg
 
-# Local file
+# 识别本地图片
 node mimo-image-understanding.js ./photo.png
 
-# Custom prompt
+# 自定义提问
 node mimo-image-understanding.js ./photo.png "这张图片里有什么动物？"
 ```
 
-## Configuration
+## 配置（可选）
 
-You can customize the API endpoint and model via environment variables:
+| 环境变量 | 默认值 | 说明 |
+|----------|--------|------|
+| `MIMO_API_KEY` | （必填） | MiMo API Key |
+| `MIMO_BASE_URL` | `https://token-plan-cn.xiaomimimo.com/anthropic` | API 地址 |
+| `MIMO_MODEL` | `mimo-v2.5` | 模型名 |
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `MIMO_API_KEY` | (required) | Your MiMo API Key |
-| `MIMO_BASE_URL` | `https://token-plan-cn.xiaomimimo.com/anthropic` | API base URL |
-| `MIMO_MODEL` | `mimo-v2.5` | Model name |
+## 支持的模型
 
-Example:
+- `mimo-v2.5`
+- `mimo-v2-omni`
 
-```bash
-export MIMO_BASE_URL="https://api.xiaomimimo.com/anthropic"
-export MIMO_MODEL="mimo-v2.5"
-node mimo-image-understanding.js ./photo.jpg
-```
+## 支持的图片格式
 
-## Supported Models
-
-- `mimo-v2.5` — supports image understanding
-- `mimo-v2-omni` — supports image understanding
-
-## Supported Image Formats
-
-JPEG, PNG, GIF, WebP, BMP — max 50MB per image.
-
-## API Reference
-
-See [MiMo Image Understanding Documentation](https://platform.xiaomimimo.com/docs/en-US/usage-guide/multimodal-understanding/image-understanding) for details.
+JPEG、PNG、GIF、WebP、BMP，单张最大 50MB。
